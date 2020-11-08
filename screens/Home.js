@@ -1,281 +1,123 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions, Image, ScrollView, Button, TextInput, FlatList, Alert } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
-import Swiper from 'react-native-swiper'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-Icon.loadFont();
 export default class Profile extends React.Component {
 
-  state = {
-    data: []
-  }
-
-  fetchData = async () => {
-    const response = await fetch('http://localhost:3001/comment'); //http://localhost:1348/testTabl //http://172.16.186.173:1348/testTabl
-    const testTable = await response.json();
-    this.setState({ data: testTable });
-  }
-  componentDidMount = () => {
-    this.fetchData();
-  }
-
-  insertComment = () => {
-    fetch('http://172.19.172.123/FinalProject/insertComment.php', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        comments: this.state.comment,
-        names: this.state.name
-      }),
-    })
-      .then((response) => response.text())
-      .then((responseJson) => {
-        Alert.alert(responseJson);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
   render() {
+    let base64Logo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAA..';
     return (
-
-      <View style={{ flex: 1, backgroundColor: '#ecf0f1' }}>
-        <View style={styles.card}>
-          <View style={styles.smCard}>
-            <Text style={styles.text}><Icon name="location-arrow" size={20} color="#900" />   Walailak University</Text>
+      <View style={{ flex: 1 }}>
+        <View style={{ flex: 0.25, backgroundColor: "#3FA4F0" }}>
+          <View style={{ marginTop: 50, marginLeft: 30 }}>
+            <Text style={{ color: "#FFF", fontSize: 25, fontWeight: '600' }}>
+              HOME WORKOUT
+            </Text>
           </View>
 
-          <View style={styles.containers}>
-            <View style={styles.cards}>
-              <MapView
-                style={{ width: 350, height: 300, borderRadius: 15, }}
-                initialRegion={{
-                  latitude: 8.645297,
-                  longitude: 99.897332,
-                  latitudeDelta: 0.0922,
-                  longitudeDelta: 0.0421,
-                }}>
-                <Marker
-                  coordinate={{
-                    latitude: 8.646348,
-                    longitude: 99.893658,
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421,
-                  }}>
-                  <View
-                    style={{
-                      backgroundColor: 'purple',
-                      padding: 5,
-                      borderRadius: 40,
-                    }}>
-                    <View
-                      style={{
-                        backgroundColor: '#C49DBD',
-                        padding: 5,
-                        borderRadius: 20,
+          <View style={{ justifyContent: 'center', marginTop: 40, flexDirection: 'row' }}>
 
-                        shadowColor: '#714B87',
-                        shadowOffset: {
-                          width: 2,
-                          height: 2,
-                        },
-                        shadowOpacity: 1,
-                        shadowRadius: 20,
-                      }}>
-
-                    </View>
-                  </View>
-                </Marker>
-              </MapView>
-            </View>
-          </View>
-
-          <ScrollView horizontal={true} >
-
-            <View >
-              <FlatList
-                data={this.state.data}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) =>
-                  <View style={styles.cardss}>
-                    {item.no == 1 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
-                    {item.no == 2 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
-                    {item.no == 3 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
-                    {item.no == 4 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
-                    {item.no == 5 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
-                    {item.no == 6 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
-                    {item.no == 7 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
-                    {item.no == 8 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
-                    {item.no == 9 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
-                    {item.no == 10 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
-                    {item.no == 11 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
-                    {item.no == 12 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
-                    {item.no == 13 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
-                  </View>
-                }
-              />
-            </View>
-            <View style={styles.cardss} >
-              <View style={{ alignItems: 'center', marginTop: 10 }}>
-                <Text>
-                  COMMENT
+            <View style={{ alignItems: 'center' }} >
+              <View>
+                <Text style={{ color: '#FFF', fontSize: 15 }}>
+                  0
                 </Text>
-
               </View>
-              <View style ={{alignItems : 'center'}}>
-                <TextInput
-                  style={{ marginTop: 10, marginLeft: 25, marginRight: 10, width: 200, height: 30, borderColor: 'gray', borderWidth: 1, borderRadius: 15 }}
-                  placeholder=' Add your comment'
-                  onChangeText={(comment) => this.setState({ comment })}
-                />
-                <TextInput
-                  style={{ marginTop: 10, marginLeft: 25, marginRight: 10, width: 200, height: 30, borderColor: 'gray', borderWidth: 1, borderRadius: 15 }}
-                  placeholder=' Add your name'
-                  onChangeText={(name) => this.setState({ name })}
-                />
-              </View>
-              <View style={{ marginTop: 5, backgroundColor: "#f6f5f5", marginLeft: 50, marginRight: 50, borderRadius: 15 }}>
-                <Button
-                  title='submit'
-                  onPress={this.insertComment}
-                />
+              <View style={{ marginTop: 10 }}>
+                <Text style={{ color: '#FFF', fontSize: 15 }} >
+                  WORKOUT
+                </Text>
               </View>
             </View>
-          </ScrollView>
 
-          <View style={styles.cardd}>
-            <Swiper
-              style={styles.wrapper}
-              loop={true}
-              autoplay={true}
-              style={{ borderRadius: 15 }} >
-              <View style={styles.slide}>
-                <Image source={require('../img/1.jpg')} style={styles.images} />
+            <View style={{ marginLeft: 50, alignItems: 'center' }}>
+              <View>
+                <Text style={{ color: '#FFF', fontSize: 15 }}>
+                  0
+                </Text>
               </View>
-
-              <View style={styles.slide}>
-                <Image source={require('../img/2.jpg')} style={styles.images} />
+              <View style={{ marginTop: 10 }}>
+                <Text style={{ color: '#FFF', fontSize: 15 }}>
+                  KCAL
+                </Text>
               </View>
+            </View>
 
-              <View style={styles.slide}>
-                <Image source={require('../img/3.jpg')} style={styles.images} />
+            <View style={{ marginLeft: 50, alignItems: 'center' }} >
+              <View>
+                <Text style={{ color: '#FFF', fontSize: 15 }} >
+                  0
+                </Text>
               </View>
-
-              <View style={styles.slide}>
-                <Image source={require('../img/4.jpg')} style={styles.images} />
+              <View style={{ marginTop: 10 }}>
+                <Text style={{ color: '#FFF', fontSize: 15 }}>
+                  MINUTE
+                </Text>
               </View>
+            </View>
 
-            </Swiper>
           </View>
+
+          <View style={{ alignItems: 'center' }}>
+            <View style={styles.card}>
+              <Text style={{ color: '#000', fontSize: 15, margin: 10 }}>
+                GOAL
+              </Text>
+            </View>
+          </View>
+
+          <View style = {{margin : 20}}>
+            <Text>
+              Training plans
+            </Text>
+          </View>
+
+          <View style={{ alignItems: 'center' }}>
+            <View style = {styles.cards}>
+              <Text style={{ color: '#000', fontSize: 15, margin: 10 }}>
+                Exercise
+              </Text>
+            </View>
+          </View>
+
+          <View style={{ alignItems: 'center' }}>
+            <View style = {styles.cards}>
+              <Text style={{ color: '#000', fontSize: 15, margin: 10 }}>
+                Food
+              </Text>    
+            </View>
+          </View>
+
         </View>
-      </View>
+      </View> //end
     );
   }
 };
-
 const styles = StyleSheet.create({
 
-  images: {
-    borderRadius: 5,
-    overflow: "hidden",
-    alignItems: "center",
-    justifyContent: "center"
-
-  },
-
-  containers: {
-    flexDirection: 'row',
-    paddingTop: 10,
-    justifyContent: 'flex-start',
-    padding: 20,
-    alignItems: 'center'
+  card: {
+    width: 350,
+    height: 150,
+    marginTop: 20,
+    backgroundColor: "#f6f5f5",
+    borderRadius: 15,
+    elevation: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    elevation: 3,
   },
 
   cards: {
     width: 350,
-    height: 300,
-    marginRight: 40,
-    backgroundColor: "white",
-    borderRadius: 15,
-    elevation: 10,
-    shadowColor: "#fbecec",
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.41,
-    shadowRadius: 9.11,
-
-    elevation: 14,
-
-  },
-
-  cardss: {
-    marginTop: 20,
-    width: 320,
     height: 150,
-    marginLeft: 20,
-    backgroundColor: "#fbecec",
+    marginTop: 20,
+    backgroundColor: "#f6f5f5",
     borderRadius: 15,
     elevation: 10,
-    shadowColor: "#fbecec",
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.41,
-    shadowRadius: 9.11,
-
-    elevation: 14,
-
-  },
-
-  slide: {
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-  },
-
-  cardd: {
-    marginBottom: 20,
-    width: 350,
-    height: 160,
-    marginLeft: 20,
-    shadowColor: "#fbecec",
-    borderRadius: 15,
-
-  },
-
-  card: {
-    flex: 1,
-    width: 390,
-    height: 300,
-    backgroundColor: "#ebd4d4",
-    marginTop: 40,
-    marginLeft: 10,
-    marginRight: 10,
-    marginBottom: 10,
-    borderRadius: 15,
-  },
-  text: {
-    textAlign: 'left',
-    marginTop: 10,
-    marginLeft: 10,
-    fontSize: 15,
-    color: "purple",
-    fontWeight: "bold",
-  },
-  smCard: {
-    flexDirection: 'row',
-    width: 370,
-    height: 40,
-    backgroundColor: '#fbecec',
-    borderRadius: 15,
-    marginTop: 15,
-    marginLeft: 10
   }
 });

@@ -13,7 +13,7 @@ import Statistic from "./screens/Statistic";
 import TimeTable from "./screens/TimeTable";
 import Profile from "./screens/Profile";
 import ContactUs from "./screens/ContactUs";
-import Van_route from "./screens/Van_route";
+import Report from "./screens/Report";
 import Root from "./screens/RootScreen";
 
 
@@ -33,14 +33,12 @@ const screenOptions = ({ route }) => ({
 
     if (route.name == 'Home') {
       iconName = 'home';
-    }else if (route.name == 'ContactUs') {
+    }else if (route.name == 'Food') {
       iconName = 'google-hangouts';
-    }else if (route.name == 'TimeTable') {
-      iconName = 'calendar';
+    }else if (route.name == 'Exercise') {
+      iconName = 'user';
     }else if (route.name == 'Profile') {
       iconName = 'user';
-    }else if (route.name == 'Statistic') {
-      iconName = 'pie-chart';
     }
     
     return <Entypo name={iconName} size={size} color={color} />;
@@ -58,10 +56,9 @@ function HomeScreen() {
       }}
     >
         <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="TimeTable" component={TimeTable} />
-        <Tab.Screen name="Profile" component={Profile} />
-        <Tab.Screen name="Statistic" component={Statistic} />
-    <Tab.Screen name="ContactUs" component={ContactUs} />
+        <Tab.Screen name="Food" component={TimeTable} />
+        <Tab.Screen name="Exercise" component={Profile} />
+        <Tab.Screen name="Profile" component={Statistic} />
     </Tab.Navigator>
   );
 }
@@ -73,8 +70,10 @@ export default function App() {
   return (
     <NavigationContainer>
         <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="Van_route" component={Van_route} />
+        <Drawer.Screen name="Home Workout" component={HomeScreen} />
+        <Drawer.Screen name="Report" component={Report} />
+        <Drawer.Screen name="Reminder" component={Report} />
+        <Drawer.Screen name="Restart progress" component={Report} />
   </Drawer.Navigator>
     </NavigationContainer>
   );
