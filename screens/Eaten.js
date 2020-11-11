@@ -43,7 +43,7 @@ export default class Eaten extends React.Component {
            </Text>
         </View>
 
-        <View style = {{alignItems : "center"}}>
+        <View style={{ alignItems: "center" }}>
           <DropDownPicker
             items={[
               { label: 'Papaya salad', value: 'Papaya-salad', icon: () => <Icon name="flag" size={18} color="#900" /> },
@@ -70,7 +70,7 @@ export default class Eaten extends React.Component {
             max={20}
 
             defaultValue={this.state.food}
-            containerStyle={{ height: 40 , width : 350 }}
+            containerStyle={{ height: 40, width: 350 }}
             itemStyle={{
               justifyContent: 'flex-start'
             }}
@@ -79,7 +79,25 @@ export default class Eaten extends React.Component {
             })}
           />
         </View>
+
+        <View style={styles.cards} >
+          <Button
+            title="OK"
+          />
+        </View>
+
       </View>
     );
   }
 };
+const styles = StyleSheet.create({
+  cards: {
+    alignSelf: "center",
+    width: 100,
+    height: 40,
+    marginTop: 50,
+    backgroundColor: '#FFF',
+
+    elevation: 10,
+  },
+});

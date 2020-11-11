@@ -32,37 +32,38 @@ export default class Food extends React.Component {
   render() {
 
     this.state = {
-      food: []
+      exc : [],
+      time : []
     }
 
     return (
-      <View style={{ flex: 1 }}>
-        <View style = {{flex : 0.3 , backgroundColor : "#3FA4F0" , borderBottomEndRadius : 120}}>
-          <View style={{ margin: 50 }}>
-            <Text style={{ textAlign: "center", fontSize: 30, fontWeight: "600" ,color : "#fff" }}>
+      <View style={{ flex: 1 , backgroundColor : "#fff"}}>
+        <View style={{ flex: 0.3, backgroundColor: "#3FA4F0", borderBottomEndRadius: 120 }}>
+          <View style={{ marginTop: 50 }}>
+            <Text style={{ textAlign: "center", fontSize: 30, fontWeight: "600", color: "#fff" }}>
               Exercise to day
+            </Text>
+          </View>
+
+          <View>
+            <Text style = {{color : '#fff' , fontSize : 20 ,fontWeight : '500', margin : 20}}>
+              Exercise 
             </Text>
           </View>
 
           <View style={{ alignItems: "center" }}>
             <DropDownPicker
               items={[
-                { label: 'Papaya salad', value: 'Papaya-salad', icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Roast chicken', value: 'Roast-chicken', icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Spicy minced beef', value: 'Spicy-minced-beef', icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Spicy minced pork', value: 'Spicy-minced-pork', icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Spicy minced chicken salad', value: 'Spicy-minced-chicken-salad', icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Pickled fish', value: 'Pickled-fish', icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Sliced grilled beef salad', value: 'Sliced-grilled-beef-salad', icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Rice porridge with shrimp', value: 'Rice-porridge-with-shrimp', icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Fried rice', value: 'Fried-rice', icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Steamed chicken with rice', value: 'Steamed-chicken-with-rice', icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Roasted duck on rice', value: 'Roasted-duck-on-rice', icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Fried rice', value: 'Fried-rice', icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Rice crispy pork', value: 'Rice-crispy-pork', icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Congee', value: 'Congee', icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Sour prawn soup', value: 'Sour-prawn-soup', icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Fried chicken', value: 'Fried-chicken', icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: 'Lunges', value: 1, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: 'Pushups', value: 2, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: 'Squats', value: 3, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: 'Standing overhead dumbbell presses', value: 4, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: 'Dumbbell rows', value: 5, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: 'Single-leg deadlifts', value: 6, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: 'Burpees', value: 7, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: 'Side planks', value: 8, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: 'Planks', value: 9, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: 'Glute bridge', value: 10, icon: () => <Icon name="flag" size={18} color="#900" /> },
               ]}
 
               multiple={true}
@@ -70,13 +71,56 @@ export default class Food extends React.Component {
               min={0}
               max={20}
 
-              defaultValue={this.state.food}
+              defaultValue={this.state.exc}
               containerStyle={{ height: 40, width: 350 }}
               itemStyle={{
                 justifyContent: 'flex-start'
               }}
               onChangeItem={item => this.setState({
-                food: item // an array of the selected items
+                exc: item // an array of the selected items
+              })}
+            />
+          </View>
+
+          <View>
+            <Text style = {{color : '#fff' , fontSize : 20 ,fontWeight : '500', marginTop : 50 , marginLeft : 20}}>
+              How long
+            </Text>
+          </View>
+
+          <View style = {{ marginTop : 20 , alignItems : 'center'}}>
+            <DropDownPicker
+              items={[
+                { label: '1 min', value: 1, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: '2 min', value: 2, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: '3 min', value: 3, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: '4 min', value: 4, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: '5 min', value: 5, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: '6 min', value: 6, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: '7 min', value: 7, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: '8 min', value: 8, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: '9 min', value: 9, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: '10 min', value: 10, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: '11 min', value: 11, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: '12 min', value: 12, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: '13 min', value: 13, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: '14 min', value: 14, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: '15 min', value: 15, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: '16 min', value: 16, icon: () => <Icon name="flag" size={18} color="#900" /> },
+              ]}
+
+              multiple={true}
+              multipleText="%d items have been selected."
+              min={0}
+              max={20}
+
+              defaultValue={this.state.time}
+              containerStyle={{ height: 40, width: 350 }}
+              itemStyle={{
+                justifyContent: 'flex-start'
+              }}
+              onChangeItem={item => this.setState({
+                time: item // an array of the selected items
               })}
             />
           </View>
@@ -86,6 +130,7 @@ export default class Food extends React.Component {
               title="OK"
             />
           </View>
+
         </View>
       </View>
     );
@@ -97,7 +142,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: 100,
     height: 40,
-    marginTop : 20,
+    marginTop: 50,
     backgroundColor: '#FFF',
 
     elevation: 10,
