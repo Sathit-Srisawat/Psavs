@@ -10,7 +10,8 @@ import {
   TouchableOpacity,
   FlatList,
   TextInput,
-  Alert
+  Alert,
+  Image
 } from 'react-native';
 
 import CountDown from 'react-native-countdown-component';
@@ -19,239 +20,144 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 //const Profile: () => React$Node = ({ route }) => 
 export default class Profile extends React.Component {
 
-  state = {
-    data: [],
-    datas: [],
-    datase:[],
-    status0 : 1,
-    status1 : 1
-  }
-
-  fetchData = async () => {
-    const response = await fetch('http://localhost:3001/profile'); //http://localhost:1348/testTabl //http://172.16.186.173:1348/testTabl
-    const testTable = await response.json();
-    this.setState({ data: testTable });
-
-    const responses = await fetch('http://localhost:3001/ticket'); //http://localhost:1348/testTabl //http://172.16.186.173:1348/testTabl
-    const testTables = await responses.json();
-    this.setState({ datas: testTables });
-
-    const responsesd = await fetch('http://localhost:3001/Countdown'); //http://localhost:1348/testTabl //http://172.16.186.173:1348/testTabl
-    const Table = await responsesd.json();
-    this.setState({ datase: Table });
-  }
-
-  componentDidMount = () => {
-    this.fetchData();
-  }
-
-
-  DeleteQueue = () => {
-
-    fetch('http://192.168.43.193/FinalProject/Delete.php', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        queue: this.state.queues,
-        status :this.state.status1
-      }),
-    })
-      .then((response) => response.text())
-      .then((responseJson) => {
-        Alert.alert(responseJson);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-  Update = () => {
-
-    fetch('http://192.168.43.193/FinalProject/update.php', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        status :this.state.status0
-      }),
-    })
-      .then((response) => response.text())
-      .then((responseJson) => {
-        Alert.alert(responseJson);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-
   render() {
     return (
-      <View style={{ flex: 1, backgroundColor: "#fff0f0" }}>
-        <View style={styles.cardd}>
-          <ScrollView>
-            <View style={{ alignItems: 'center', marginTop: 20 }}>
-              <Icon name="user-circle" size={80} color="#900" />
+      <View style={{ flex: 1 }}>
+        <View style={{ flex: 0.35, backgroundColor: "#00587a" }}>
+          <View style={{ marginTop: 50, alignItems: "center" }}>
+            <Text style={{ fontSize: 20, fontWeight: "500", color: "#fff", fontWeight: "600" }}>
+              Profile
+            </Text>
+          </View>
+
+          <View style={{ marginTop: 10, alignItems: "center" }}>
+            <Image style={{ width: 100, height: 100, borderRadius: 15 }} source={require('../img/1.png')} />
+          </View>
+
+          <View style={{ alignItems: 'center', marginTop: 20 }}>
+            <Text style={{ color: "#fff", fontSize: 20 }}>
+              Sathit Srisawat
+            </Text>
+          </View>
+
+          <View style={{ alignItems: 'center', marginTop: 10 }}>
+            <Text style={{ color: "#fff", fontSize: 10 }}>
+              WU | Compter Engineering
+            </Text>
+          </View>
+
+          <View style={styles.card}>
+            <View style={{ flexDirection: "row", alignSelf: "center", marginTop: 10 }}>
+
+              <View style={{ alignItems: "center", marginRight: 15, marginLeft: 15 }}>
+                <View style={{ marginTop: 10 }}>
+                  <Text style={{ color: "#000" }}>
+                    21
+                  </Text>
+                </View>
+                <View style={{ marginTop: 10 }}>
+                  <Text>
+                    AGE
+                  </Text>
+                </View>
+              </View>
+              <Text style={{ fontSize: 30, alignSelf: "center" }}>|</Text>
+              <View style={{ alignItems: "center", marginLeft: 15, marginRight: 15 }}>
+                <View style={{ marginTop: 10 }}>
+                  <Text style={{ color: "#000" }}>
+                    64
+                  </Text>
+                </View>
+                <View style={{ marginTop: 10 }}>
+                  <Text>
+                    Weight
+                  </Text>
+                </View>
+              </View>
+              <Text style={{ fontSize: 30, alignSelf: "center" }}>|</Text>
+              <View style={{ alignItems: "center", marginLeft: 15, marginRight: 15 }}>
+                <View style={{ marginTop: 10 }}>
+                  <Text style={{ color: "#000" }}>
+                    21
+                  </Text>
+                </View>
+                <View style={{ marginTop: 10 }}>
+                  <Text>
+                    Height
+                  </Text>
+                </View>
+              </View>
+
             </View>
 
-            <View style={{ alignItems: 'center', marginTop: 20 }}>
-              <FlatList
-                data={this.state.data}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) =>
-
-                  <View style={{ marginTop: 15 }}>
-                    <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 25 }}>
-                      <Text style={{ color: '#000000' }}>{'\t'}{item.position} {'\t'}{item.firstname}{'\t'}{item.lastname}</Text>
-                    </Text>
-                  </View>
-                }
-              />
+            <View style={{ marginTop: 45 }}>
+              <Text style={{ fontSize: 15, fontWeight: "500" }}>
+                My Rewards
+              </Text>
             </View>
 
             <View style={styles.cards}>
-              <View style={{ marginTop: 50, marginLeft: 50, flexDirection: 'row' }}>
-                <Icon name="envelope-square" size={20} color="#900" />
-                <FlatList
-                  data={this.state.data}
-                  keyExtractor={(item, index) => index.toString()}
-                  renderItem={({ item }) =>
-
-                    <View>
-                      <Text style={{ color: '#000000', fontSize: 15 }}>  E-mail :  {item.email}</Text>
-                    </View>
-                  }
-                />
-              </View>
-
-              <View style={{ marginTop: 20, marginLeft: 50, flexDirection: 'row' }}>
-                <Icon name="phone" size={20} color="#900" />
-                <FlatList
-                  data={this.state.data}
-                  keyExtractor={(item, index) => index.toString()}
-                  renderItem={({ item }) =>
-                    <View>
-                      <Text style={{ color: '#000000', fontSize: 15 }}>  Phone :  {item.phone}</Text>
-                    </View>
-                  }
-                />
-              </View>
-
-            </View>
-
-            <View style={styles.card}>
-              <Text style={{ textAlign: 'center', marginTop: 20, fontSize: 15, fontWeight: "bold" }}>
-                Your Ticket
-            </Text>
-              <View style={{ marginTop: 3 }}>
-                <View style={styles.tiket}>
-                  <FlatList
-                    data={this.state.datas}
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item }) =>
-                      <View style={{ marginTop: 10, marginLeft: 35 }}>
-                        <Text style={{ color: '#000000', fontSize: 15 }}>time :  {item.time} date : {item.date}</Text>
-                      </View>
-                    }
-                  />
-
+              <View style={{ flexDirection: "row" , marginTop : 30}}>
+                <View>
+                  <Text >
+                    {"\t\t\t"}45 min Runing
+                  </Text>
                 </View>
-
-                <TextInput
-                  style={{ marginTop: 20, marginLeft: 50, width: 250, height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 15 }}
-                  placeholder=' select queue'
-                  onChangeText={(queues) => this.setState({ queues })}
-                />
-
-                <View style={{ marginTop: 15, backgroundColor: "#f6f5f5", marginLeft: 50, marginRight: 50, borderRadius: 15 }}>
-                  <Button
-                    title='select time'
-                    onPress={this.DeleteQueue}
-
-                  />
+                <View>
+                  <Text>
+                    {"\t\t"}4.56 km
+                  </Text>
                 </View>
               </View>
             </View>
-          </ScrollView>
-          <FlatList
-            data={this.state.datase}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) =>
-              <View>
-                <View style={{ marginTop: 10, marginLeft: 35 }}>
-                  {item.logic == 1 ? <CountDown until={10} onFinish={() => Alert.alert('')} onFinish = {this.Update} size={15} /> :null}
+
+            <View style={styles.cards}>
+              <View style={{ flexDirection: "row" , marginTop : 30}}>
+                <View>
+                  <Text >
+                    {"\t\t\t"}30 min Biking
+                  </Text>
+                </View>
+                <View>
+                  <Text>
+                    {"\t\t"}2.21 km
+                  </Text>
                 </View>
               </View>
-            }
-          />
+            </View>
+
+          </View>
         </View>
-      </View>
+      </View >
     );
   }
 };
-
 const styles = StyleSheet.create({
-  cardd: {
-    flex: 1,
-    width: 390,
-    height: 300,
-    backgroundColor: '#ebd4d4',
-    marginTop: 40,
-    marginLeft: 10,
-    marginRight: 10,
-    marginBottom: 10,
-    borderRadius: 15,
-  },
-
-  cards: {
-    width: 350,
-    height: 150,
-    marginTop: 20,
-    marginLeft: 20,
-    backgroundColor: "white",
-    borderRadius: 15,
-    elevation: 10,
-    shadowColor: "#fbecec",
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.41,
-    shadowRadius: 9.11,
-    elevation: 14,
-  },
 
   card: {
+    alignSelf: "center",
     width: 350,
-    height: 350,
-    marginTop: 20,
-    marginLeft: 20,
-    backgroundColor: "white",
+    height: 80,
+    marginTop: 10,
+    backgroundColor: '#FFF',
     borderRadius: 15,
     elevation: 10,
-    shadowColor: "#fbecec",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 7,
     },
-    shadowOpacity: 0.41,
-    shadowRadius: 9.11,
-    elevation: 14,
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    elevation: 3,
   },
-  tiket: {
-    width: 285,
-    height: 140,
+  cards: {
+    alignSelf: "center",
+    width: 350,
+    height: 80,
     marginTop: 20,
-    marginLeft: 35,
-    backgroundColor: "#ecf4f3",
+    backgroundColor: '#FFF',
     borderRadius: 15,
     elevation: 10,
   },
-
 });
-//export default Profile;

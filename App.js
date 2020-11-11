@@ -58,7 +58,7 @@ function HomeScreen() {
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Food" component={TimeTable} />
         <Tab.Screen name="Exercise" component={Profile} />
-        <Tab.Screen name="Profile" component={Statistic} />
+        <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
 }
