@@ -9,13 +9,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 import Home from "./screens/Home";
-import Statistic from "./screens/Statistic";
-import TimeTable from "./screens/TimeTable";
+import Food from "./screens/Food";
+import Exercise from "./screens/Exercise";
 import Profile from "./screens/Profile";
-import ContactUs from "./screens/ContactUs";
 import Report from "./screens/Report";
-import Root from "./screens/RootScreen";
-
+import Eaten from "./screens/Eaten";
+import Exc from "./screens/Exc";
 
 const Tab = createBottomTabNavigator();
 
@@ -56,8 +55,8 @@ function HomeScreen() {
       }}
     >
         <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Food" component={TimeTable} />
-        <Tab.Screen name="Exercise" component={Profile} />
+        <Tab.Screen name="Food" component={Food} />
+        <Tab.Screen name="Exercise" component={Exercise} />
         <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
@@ -73,7 +72,8 @@ export default function App() {
         <Drawer.Screen name="Home Workout" component={HomeScreen} />
         <Drawer.Screen name="Report" component={Report} />
         <Drawer.Screen name="Reminder" component={Report} />
-        <Drawer.Screen name="Restart progress" component={Report} />
+        <Drawer.Screen name="Eaten to day" component={Eaten} />
+        <Drawer.Screen name="Exercised to day" component={Exc} />
   </Drawer.Navigator>
     </NavigationContainer>
   );
