@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   Dimensions,
   navigation,
-  FlatList
+  FlatList,
 } from 'react-native';
 
 import {
@@ -25,7 +25,7 @@ import {
 import Icons from 'react-native-vector-icons/FontAwesome';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/Feather';
-
+import Home from "./Home";
 Icon.loadFont();
 export default class Eaten extends React.Component {
 
@@ -83,6 +83,7 @@ export default class Eaten extends React.Component {
         <View style={styles.cards} >
           <Button
             title="OK"
+            onPress={() => navigation.navigate('Root', { screen: 'test' })}
           />
         </View>
 

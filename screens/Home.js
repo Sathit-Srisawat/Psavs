@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, Image, ScrollView, Button, TextInput, FlatList, Alert } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, ScrollView, Button, TextInput, FlatList, Alert,navigation } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class Profile extends React.Component {
