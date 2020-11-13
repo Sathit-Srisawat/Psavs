@@ -124,7 +124,7 @@ export default class Profile extends React.Component {
                   </Text>
                 </View>
               </View>
-            </View>
+            </View>      
 
           </View>
         </View>

@@ -18,6 +18,7 @@ import Report from "./screens/Report";
 import Eaten from "./screens/Eaten";
 import Exc from "./screens/Exc";
 
+
 const Tab = createBottomTabNavigator();
 
 Entypo.loadFont();
