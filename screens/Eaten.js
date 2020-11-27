@@ -11,6 +11,7 @@ import {
   Dimensions,
   navigation,
   FlatList,
+  Alert
 } from 'react-native';
 
 import {
@@ -28,12 +29,31 @@ import Icon from 'react-native-vector-icons/Feather';
 import Home from "./Home";
 Icon.loadFont();
 export default class Eaten extends React.Component {
+  state = {
+    food : []
+  }
+
+  insertFood = () => {
+    fetch('http://172.18.132.101/NSC/Insert_food.php', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        foods: this.state.food[0]
+      }),
+    })
+      .then((response) => response.text())
+      .then((responseJson) => {
+        Alert.alert(responseJson);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   render() {
-
-    this.state = {
-      food: []
-    }
 
     return (
       <View style={{ flex: 1 }}>
@@ -67,7 +87,7 @@ export default class Eaten extends React.Component {
             multiple={true}
             multipleText="%d items have been selected."
             min={0}
-            max={20}
+            max={1}
 
             defaultValue={this.state.food}
             containerStyle={{ height: 40, width: 350 }}
@@ -83,7 +103,7 @@ export default class Eaten extends React.Component {
         <View style={styles.cards} >
           <Button
             title="OK"
-            onPress={() => navigation.navigate('Root', { screen: 'test' })}
+            onPress={this.insertFood}
           />
         </View>
 
@@ -94,11 +114,11 @@ export default class Eaten extends React.Component {
 const styles = StyleSheet.create({
   cards: {
     alignSelf: "center",
-    width: 100,
+    width: 200,
     height: 40,
-    marginTop: 50,
+    marginTop: 160,
     backgroundColor: '#FFF',
-
+    borderRadius : 15,
     elevation: 10,
   },
 });

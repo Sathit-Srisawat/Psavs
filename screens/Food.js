@@ -28,6 +28,19 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 export default class Food extends React.Component {
 
+  state = {
+    data: [],
+  }
+
+  fetchData = async () => {
+    const response = await fetch('http://localhost:3004/suggest'); //http://localhost:1348/testTabl //http://172.16.186.173:1348/testTabl
+    const testTable = await response.json();
+    this.setState({ data: testTable });
+
+  }
+  componentDidMount = () => {
+    this.fetchData();
+  }
 
   render() {
     return (
@@ -42,8 +55,21 @@ export default class Food extends React.Component {
           <View style={styles.cards}>
             <View style = {{margin : 10}}>
               <Text>
-                Breakfast
+                Breakfast                
               </Text>
+
+              <FlatList
+                  data={this.state.data}
+                  keyExtractor={(item, index) => index.toString()}
+                  renderItem={({ item }) =>
+                    <View style={{ marginTop: 10 }}>
+                      <Text style={{ color: "#000" }}>
+                        {item.menu}
+                      </Text>
+                    </View>
+                  }
+                />
+
             </View>
           </View>
 

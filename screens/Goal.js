@@ -30,18 +30,15 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 export default class Food extends React.Component {
 
-  insertPersonal = () => {
-    fetch('http://172.18.132.238/NSC/Insert_information.php', {
+  insertGoal = () => {
+    fetch('http://172.18.132.101/NSC/Insert_Goal.php', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        Heights: this.state.Height,
-        weight: this.state.Weight,
-        Ages: this.state.Age,
-        Sexs: this.state.Sex,
+        Goals: this.state.Goal,
       }),
     })
       .then((response) => response.text())
@@ -58,28 +55,14 @@ export default class Food extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <View style={{ flex: 0.4 }}>
-          <Image style={{ height: 300, width: Dimensions.get('window').width }} source={require('../img/4.jpg')} />
+          <Image style={{ height: 300, width: Dimensions.get('window').width }} source={require('../img/5.jpg')} />
           <View style={{ position: 'absolute', top: 160, left: 20, right: 0, bottom: 20 }}>
-            <Text style={{ fontSize: 50, fontWeight: '800', color: '#fff' }}>
-                Personal Information
+            <Text style={{ fontSize: 40, fontWeight: '800', color: '#fff' }}>
+                Set Your Goal To Gain Weight
             </Text>
           </View>
 
           <View style={styles.cards}>
-
-            <View style = {{margin : 20}}>
-              <Text style = {{fontSize : 15 ,fontWeight : '500'}}>
-                Height
-              </Text>
-            </View>
-
-            <View style = {{marginTop : 10 ,alignItems: 'center' ,}}>
-              <TextInput
-                style = {{height : 40 ,width : 300}}
-                placeholder='cm'
-                onChangeText={(Height) => this.setState({Height})}
-              />
-            </View>
 
             <View style = {{margin : 20}}>
               <Text style = {{fontSize : 15 ,fontWeight : '500'}}>
@@ -91,42 +74,15 @@ export default class Food extends React.Component {
               <TextInput
                 style = {{height : 40 ,width : 300}}
                 placeholder='kg'
-                onChangeText={(Weight) => this.setState({Weight})}
+                onChangeText={(Goal) => this.setState({Goal})}
               />
             </View>
 
-            <View style = {{margin : 20}}>
-              <Text style = {{fontSize : 15 ,fontWeight : '500'}}>
-                Age
-              </Text>
-            </View>
 
-            <View style = {{marginTop : 10 ,alignItems: 'center' ,}}>
-              <TextInput
-                style = {{height : 40 ,width : 300}}
-                placeholder='year'
-                onChangeText={(Age) => this.setState({Age})}
-              />
-            </View>
-
-            <View style = {{margin : 20}}>
-              <Text style = {{fontSize : 15 ,fontWeight : '500'}}>
-                Sex
-              </Text>
-            </View>
-
-            <View style = {{marginTop : 10 ,alignItems: 'center' ,}}>
-              <TextInput
-                style = {{height : 40 ,width : 300}}
-                color = '#f6f5f5'
-                placeholder='female or male'
-                onChangeText={(Sex) => this.setState({Sex})}
-              />
-            </View>
             <View style = {styles.button}>
                 <Button
                     title = "confirm"
-                    onPress={this.insertPersonal}
+                    onPress={this.insertGoal}
                 />
             </View>
         </View>
@@ -142,7 +98,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
-    backgroundColor: '#fff',
+    backgroundColor: '#e7e7e7',
     borderRadius: 15,
     elevation: 10,
     position: 'absolute',

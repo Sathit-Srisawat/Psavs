@@ -5,10 +5,10 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 export default class Profile extends React.Component {
 
   render() {
-    let base64Logo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAA..';
     return (
       <View style={{ flex: 1 }}>
-        <View style={{ flex: 0.25, backgroundColor: "#3FA4F0" }}>
+        <Image style={{height: 270, width: Dimensions.get('window').width }} source={require('../img/7.jpg')} />
+        <View style={{ flex: 0.25, position: 'absolute' , marginLeft : 30}}>
           <View style={{ marginTop: 50, marginLeft: 30 }}>
             <Text style={{ color: "#FFF", fontSize: 25, fontWeight: '600' }}>
               HOME WORKOUT

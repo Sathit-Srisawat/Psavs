@@ -10,7 +10,8 @@ import {
   TouchableOpacity,
   Dimensions,
   navigation,
-  FlatList
+  FlatList,
+  Alert
 } from 'react-native';
 
 import {
@@ -29,12 +30,33 @@ import Icon from 'react-native-vector-icons/Feather';
 Icon.loadFont();
 export default class Food extends React.Component {
 
-  render() {
+  state = {
+    exc : [],
+    time : []
+  }
 
-    this.state = {
-      exc : [],
-      time : []
-    }
+  insertExercise = () => {
+    fetch('http://172.18.132.101/NSC/Insert_exercise.php', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        excs: this.state.exc[0],
+        times: this.state.time[0]
+      }),
+    })
+      .then((response) => response.text())
+      .then((responseJson) => {
+        Alert.alert(responseJson);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  render() {
 
     return (
       <View style={{ flex: 1 , backgroundColor : "#fff"}}>
@@ -54,22 +76,22 @@ export default class Food extends React.Component {
           <View style={{ alignItems: "center" }}>
             <DropDownPicker
               items={[
-                { label: 'Lunges', value: 1, icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Pushups', value: 2, icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Squats', value: 3, icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Standing overhead dumbbell presses', value: 4, icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Dumbbell rows', value: 5, icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Single-leg deadlifts', value: 6, icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Burpees', value: 7, icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Side planks', value: 8, icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Planks', value: 9, icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: 'Glute bridge', value: 10, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: 'Lunges', value: 'Lunges', icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: 'Pushups', value: 'Pushups', icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: 'Squats', value: 'Squats', icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: 'Standing overhead dumbbell presses', value: 'Standing overhead dumbbell presses', icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: 'Dumbbell rows', value: 'Dumbbell rows', icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: 'Single-leg deadlifts', value: 'Single-leg deadlifts', icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: 'Burpees', value: 'Burpees', icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: 'Side planks', value: 'Side planks', icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: 'Planks', value: 'Planks', icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: 'Glute bridge', value: 'Glute bridge', icon: () => <Icon name="flag" size={18} color="#900" /> },
               ]}
 
               multiple={true}
               multipleText="%d items have been selected."
               min={0}
-              max={20}
+              max={1}
 
               defaultValue={this.state.exc}
               containerStyle={{ height: 40, width: 350 }}
@@ -82,7 +104,7 @@ export default class Food extends React.Component {
             />
           </View>
 
-          <View>
+          <View style = {{marginTop : 80}}>
             <Text style = {{color : '#fff' , fontSize : 20 ,fontWeight : '500', marginTop : 50 , marginLeft : 20}}>
               How long
             </Text>
@@ -112,7 +134,7 @@ export default class Food extends React.Component {
               multiple={true}
               multipleText="%d items have been selected."
               min={0}
-              max={20}
+              max={1}
 
               defaultValue={this.state.time}
               containerStyle={{ height: 40, width: 350 }}
@@ -128,6 +150,7 @@ export default class Food extends React.Component {
           <View style={styles.cards} >
             <Button
               title="OK"
+              onPress={this.insertExercise}
             />
           </View>
 
