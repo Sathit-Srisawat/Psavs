@@ -27,9 +27,9 @@ app.get('/BMI', function (req, res) {
 });
 });
 
-app.get('/suggest', function (req, res) {
+app.get('/suggestF', function (req, res) {
   connection.getConnection(function (err, connection) {
-  connection.query('SELECT * FROM suggest', function (error, results, fields) {
+  connection.query('SELECT * FROM suggestF', function (error, results, fields) {
     if (error) throw error;
     res.send(results)
   });
@@ -39,6 +39,24 @@ app.get('/suggest', function (req, res) {
 app.get('/statusHealth', function (req, res) {
   connection.getConnection(function (err, connection) {
   connection.query('SELECT * FROM statusHealth', function (error, results, fields) {
+    if (error) throw error;
+    res.send(results)
+  });
+});
+});
+
+app.get('/suggestEx', function (req, res) {
+  connection.getConnection(function (err, connection) {
+  connection.query('SELECT * FROM suggestEx', function (error, results, fields) {
+    if (error) throw error;
+    res.send(results)
+  });
+});
+});
+
+app.get('/Goal', function (req, res) {
+  connection.getConnection(function (err, connection) {
+  connection.query('SELECT * FROM Goal', function (error, results, fields) {
     if (error) throw error;
     res.send(results)
   });
@@ -58,6 +76,14 @@ app.listen(3002, () => {
  });
 
  app.listen(3004, () => {
-  console.log('Go to http://localhost:3003/suggest so you can see the data.');
+  console.log('Go to http://localhost:3004/suggestF so you can see the data.');
+ });
+ 
+ app.listen(3005, () => {
+  console.log('Go to http://localhost:3005/suggestEx so you can see the data.');
+ });
+ 
+ app.listen(3006, () => {
+  console.log('Go to http://localhost:3006/Goal so you can see the data.');
  });
  

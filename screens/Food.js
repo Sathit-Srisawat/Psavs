@@ -33,7 +33,7 @@ export default class Food extends React.Component {
   }
 
   fetchData = async () => {
-    const response = await fetch('http://localhost:3004/suggest'); //http://localhost:1348/testTabl //http://172.16.186.173:1348/testTabl
+    const response = await fetch('http://localhost:3004/suggestF'); //http://localhost:1348/testTabl //http://172.16.186.173:1348/testTabl
     const testTable = await response.json();
     this.setState({ data: testTable });
 

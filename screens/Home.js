@@ -4,6 +4,21 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class Profile extends React.Component {
 
+  state = {
+    data: [],
+  }
+
+  fetchData = async () => {
+    const response = await fetch('http://localhost:3006/Goal'); //http://localhost:1348/testTabl //http://172.16.186.173:1348/testTabl
+    const testTable = await response.json();
+    this.setState({ data: testTable });
+
+  }
+  componentDidMount = () => {
+    this.fetchData();
+  }
+
+
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -63,6 +78,19 @@ export default class Profile extends React.Component {
               <Text style={{ color: '#000', fontSize: 15, margin: 10 }}>
                 GOAL
               </Text>
+
+              <FlatList
+                  data={this.state.data}
+                  keyExtractor={(item, index) => index.toString()}
+                  renderItem={({ item }) =>
+                    <View style={{ marginTop: 10 }}>
+                      <Text style={{ color: "#000" }}>
+                        {item.Goal}
+                      </Text>
+                    </View>
+                  }
+                />
+
             </View>
           </View>
 

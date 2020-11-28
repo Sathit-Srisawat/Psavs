@@ -28,6 +28,19 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 export default class Exercise extends React.Component {
 
+  state = {
+    data: [],
+  }
+
+  fetchData = async () => {
+    const response = await fetch('http://localhost:3005/suggestEx'); //http://localhost:1348/testTabl //http://172.16.186.173:1348/testTabl
+    const testTable = await response.json();
+    this.setState({ data: testTable });
+
+  }
+  componentDidMount = () => {
+    this.fetchData();
+  }
 
   render() {
     return (
@@ -44,6 +57,19 @@ export default class Exercise extends React.Component {
               <Text>
                 Exercise
               </Text>
+
+              <FlatList
+                  data={this.state.data}
+                  keyExtractor={(item, index) => index.toString()}
+                  renderItem={({ item }) =>
+                    <View style={{ marginTop: 10 }}>
+                      <Text style={{ color: "#000" }}>
+                        {item.style}
+                      </Text>
+                    </View>
+                  }
+                />
+
             </View>
           </View>
 

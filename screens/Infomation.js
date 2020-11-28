@@ -31,7 +31,7 @@ Icon.loadFont();
 export default class Food extends React.Component {
 
   insertPersonal = () => {
-    fetch('http://172.18.132.238/NSC/Insert_information.php', {
+    fetch('http://172.18.132.72/NSC/Insert_information.php', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
-    backgroundColor: '#fff',
+    backgroundColor: '#e7e7e7',
     borderRadius: 15,
     elevation: 10,
     position: 'absolute',

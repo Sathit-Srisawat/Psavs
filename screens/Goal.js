@@ -41,6 +41,7 @@ export default class Food extends React.Component {
         Goals: this.state.Goal,
       }),
     })
+    
       .then((response) => response.text())
       .then((responseJson) => {
         Alert.alert(responseJson);
