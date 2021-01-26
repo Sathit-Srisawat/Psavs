@@ -1,67 +1,65 @@
-import * as React from 'react';
-import { Button, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  ScrollView,
+  View,
+  Text,
+  StatusBar,
+  Button,
+  TouchableOpacity,
+  Dimensions,
+  navigation,
+  FlatList,
+  Image,
+  Alert
+} from 'react-native';
 
-function DetailsScreen() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center',  alignItems: 'center' }}>
-        <Text>Details!</Text>
-      </View>
-    );
-  }
+import {
+  LineChart,
+  BarChart,
+  PieChart,
+  ProgressChart,
+  ContributionGraph,
+  StackedBarChart,
+} from "react-native-chart-kit";
+import { TextInput } from 'react-native-paper';
 
-  function HomeScreen({ navigation }) {
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+export default class Food extends React.Component {
+
+
+
+  render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>  
-        <Text>Home screen</Text>
-        <Button
-          title="Go to Details"
-          onPress={() => navigation.navigate('Details')}
+      <View>
+        <ProgressChart
+          data={data}
+          width={350}
+          height={220}
+          strokeWidth={16}
+          radius={32}
+          chartConfig={chartConfig}
+          hideLegend={false}
         />
       </View>
     );
   }
+};
 
+const data = {
+  labels: ["Swim", "Bike", "Run"], // optional
+  data: [0.4, 0.6, 0.8]
+};
+const chartConfig = {
 
-  function SettingsScreen({ navigation }) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Settings screen</Text>
-        <Button
-          title="Go to Details"
-          onPress={() => navigation.navigate('Details')}
-        />
-      </View>
-    );
-  }
-  const HomeStack = createStackNavigator();
-  function HomeStackScreen() {
-   return (
-     <HomeStack.Navigator>
-      <HomeStack.Screen name="Home" component={HomeScreen} /><HomeStack.Screen name="Details" component={DetailsScreen} />
-     </HomeStack.Navigator>
-    );
-  }
-  const SettingsStack = createStackNavigator();
-  function SettingsStackScreen() {
-    return (
-      <SettingsStack.Navigator>
-        <SettingsStack.Screen name="Settings" component={SettingsScreen} />
-        <SettingsStack.Screen name="Details" component={DetailsScreen} />
-      </SettingsStack.Navigator>
-    );
-  }
-
-const Tab = createBottomTabNavigator();
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeStackScreen} />
-        <Tab.Screen name="Settings" component=     {SettingsStackScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
-}
+  backgroundGradientFrom: "#FFF",
+  backgroundGradientFromOpacity: 5,
+  backgroundGradientTo: "#FFF",
+  backgroundGradientToOpacity: 5,
+  color: (opacity = 15) => `rgba(0, 0, 0, ${opacity})`,
+  strokeWidth: 2, // optional, default 3
+  barPercentage: 0.5,
+  useShadowColorFromDataset: false // optional
+};

@@ -163,7 +163,7 @@ export default class Profile extends React.Component {
                     </View>
                   }
                 />
-
+                
                 <View style={{ marginTop: 10 }}>
                   <Text>
                     BMI
@@ -179,6 +179,7 @@ export default class Profile extends React.Component {
                     {"\t\t"} Health {'\t\t'}:
                   </Text>
                 </View>
+
                 <View>
                   <FlatList
                     data={this.state.datass}

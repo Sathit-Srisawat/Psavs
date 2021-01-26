@@ -53,24 +53,32 @@ export default class Exercise extends React.Component {
             </Text>
           </View>
           <View style={styles.cards}>
-            <View style = {{margin : 10}}>
-              <Text>
-                Exercise
-              </Text>
-
-              <FlatList
+            <ScrollView>
+              <View style={{ margin: 10 }}>
+                <FlatList
                   data={this.state.data}
                   keyExtractor={(item, index) => index.toString()}
                   renderItem={({ item }) =>
-                    <View style={{ marginTop: 10 }}>
+                    <View style={{ marginTop: 10 , alignItems : 'center'}}>
                       <Text style={{ color: "#000" }}>
+                        {'\n'}
                         {item.style}
+                        {'\n'}
+                        {item.style == "Jump up Burpee" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Jump_up_Burpee.jpg')} /> : null}
+                        {item.style == "Lunges" ? <Image style={{ height: 350, width: 350 }} source={require('../img/lunges.jpg')} /> : null}
+                        {item.style == "Mountain Climber" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Mountain_Climber.jpg')} /> : null}
+                        {item.style == "Plank" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Plank.jpg')} /> : null}
+                        {item.style == "Push Ups" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Push_Ups.jpg')} /> : null}
+                        {item.style == "Reverse Crunch" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Reverse_Crunch.png')} /> : null}
+                        {item.style == "Sit Ups" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Sit_Ups.jpg')} /> : null}
+                        {item.style == "Squat" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Squat.jpg')} /> : null}                        
                       </Text>
                     </View>
                   }
                 />
 
-            </View>
+              </View>
+            </ScrollView>
           </View>
 
         </View>
@@ -93,5 +101,17 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+  },
+
+  card: {
+    alignSelf: "center",
+    margin : 10,
+    width: Dimensions.get('window').width - 10,
+    height: Dimensions.get('window').height - 380,
+    backgroundColor: '#000',
+    borderRadius: 15,
+    elevation: 10,
+    position: 'absolute',
+    
   },
 });

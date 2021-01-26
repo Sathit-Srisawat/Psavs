@@ -7,5 +7,5 @@ import App from './App';
 import {name as appName} from './app.json';
 //import App from "./screens/Login";
 //import App from "./screens/Roots";
-//import App from "./screens/Infomation";
+//import App from "./screens/test";
 AppRegistry.registerComponent(appName, () => App);
