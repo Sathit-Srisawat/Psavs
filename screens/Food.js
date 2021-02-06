@@ -24,20 +24,22 @@ import {
 } from "react-native-chart-kit";
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Swiper from 'react-native-swiper'
 
 Icon.loadFont();
 export default class Food extends React.Component {
 
   state = {
-    data: [],
+    dataB: [],
   }
 
   fetchData = async () => {
-    const response = await fetch('http://localhost:3004/suggestF'); //http://localhost:1348/testTabl //http://172.16.186.173:1348/testTabl
+    const response = await fetch('http://localhost:3001/Personal'); //http://localhost:1348/testTabl //http://172.16.186.173:1348/testTabl
     const testTable = await response.json();
     this.setState({ data: testTable });
 
   }
+
   componentDidMount = () => {
     this.fetchData();
   }
@@ -53,36 +55,137 @@ export default class Food extends React.Component {
             </Text>
           </View>
           <View style={styles.cards}>
-            <ScrollView>
-            <View style = {{margin : 10}}>
-              <FlatList
-                  data={this.state.data}
-                  keyExtractor={(item, index) => index.toString()}
-                  renderItem={({ item }) =>
-                    <View style={{ marginTop: 10 , alignItems : 'center'}}>
-                      <Text style={{ color: "#000" }}>
-                        {'\n'}
-                        {item.menu}
-                        {'\n'}
-                        {item.menu == "Milk" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Milk.jpg')} /> : null}
-                        {item.menu == "Agg" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Agg.jpg')} /> : null}
-                        {item.menu == "Legumes" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Legumes.jpg')} /> : null}
-                        {item.menu == "Red meat" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Red_meat.png')} /> : null}
-                        {item.menu == "potato" ? <Image style={{ height: 350, width: 350 }} source={require('../img/potato.jpg')} /> : null}
-                        {item.menu == "Salmon" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Salmon.png')} /> : null}
-                        {item.menu == "Whey protein" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Whey_protein.jpg')} /> : null}
-                        {item.menu == "Whole grain bread" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Whole_grain_bread.jpeg')} /> : null}
-                        {item.menu == "Avocado" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Avocado.jpg')} /> : null}
-                        {item.menu == "Cereals" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Cereals.jpg')} /> : null}
-                        {item.menu == "Dark chocolate" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Dark_chocolate.jpg')} /> : null}
-                        {item.menu == "Yoghurt with fat" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Yoghurt_with_fat.jpg')} /> : null}
-                      </Text>
+            <ScrollView horizontal={true}>
+              <View style={{ alignItems: 'center', marginLeft: 25 }}>
+                <View style={styles.card1}>
+                  <Text style={{ marginTop: 20, marginLeft: 20, fontSize: 30, fontWeight: '800' }}>
+                    Breakfast
+                  </Text>
+                  <View style={{ alignItems: 'center' }}>
+                    <View style={styles.cardin}>
+                      <FlatList
+                        data={this.state.data}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item }) =>
+                          <View style={{ marginTop: 10, alignItems: 'center' }}>
+                            {item.status = "Under Weight" ?
+                              <Swiper
+                                style={styles.wrapper}
+                                loop={true}
+                                autoplay={true}
+                                style={{ borderRadius: 15 }} >
+                                <View style={{ alignItems: 'center' }}>
+                                  <Text style={{ fontSize: 20, fontWeight: '800' }}>แซนด์วิชทูน่า</Text>
+                                  <Image style={{ marginTop : 20,height: 300, width: 300 , borderRadius : 15}} source={require('../imgfood/breakfast/1.jpg')} />
+                                </View>
+                                <View style={{ alignItems: 'center' }}>
+                                  <Text style={{ fontSize: 20, fontWeight: '800' }}>ข้าวต้มกุ้ง 1 ชาม</Text>
+                                  <Image style={{ marginTop : 20,height: 300, width: 300 , borderRadius : 15 }} source={require('../imgfood/breakfast/2.jpg')} />
+                                </View>
+                                <View style={{ alignItems: 'center' }}>
+                                  <Text style={{ fontSize: 20, fontWeight: '800' }}>ซีเรียลโฮลวีท 45 กรัม + นม 125 มล.</Text>
+                                  <Image style={{ marginTop : 20,height: 300, width: 300 , borderRadius : 15}} source={require('../imgfood/breakfast/3.jpg')} />
+                                </View>                                
+                              </Swiper>
+                              : null}
+                          </View>
+                        }
+                      />
                     </View>
-                  }
-                />
+                  </View>
+                </View>
+              </View>
 
-            </View>
+              <View style={{ alignItems: 'center', marginLeft: 10, marginRight: 10 }}>
+                <View style={styles.card1}>
+                  <Text style={{ marginTop: 20, marginLeft : 20, fontSize: 30, fontWeight: '800' }}>
+                    Lunch
+                  </Text>
+                  <View style={{ alignItems: 'center' }}>
+                    <View style={styles.cardin}>
+                      <FlatList
+                        data={this.state.data}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item }) =>
+                          <View style={{ marginTop: 10, alignItems: 'center' }}>
+                            {item.status = "Under Weight" ?
+                              <Swiper
+                                style={styles.wrapper}
+                                loop={true}
+                                autoplay={true}
+                                style={{ borderRadius: 15 }} >
+                                <View style={{ alignItems: 'center' }}>
+                                  <Text style={{ fontSize: 20, fontWeight: '800' }}>เส้นใหญ่ลูกชิ้นน้ำ 1 ชาม</Text>
+                                  <Image style={{ marginTop : 20,height: 300, width: 300 , borderRadius : 15}} source={require('../imgfood/lunch/1.jpeg')} />
+                                </View>
+                                <View style={{ alignItems: 'center' }}>
+                                  <Text style={{ fontSize: 20, fontWeight: '800' }}>สุกี้น้ำหมู</Text>
+                                  <Image style={{ marginTop : 20,height: 300, width: 300 , borderRadius : 15 }} source={require('../imgfood/lunch/2.jpg')} />
+                                </View>
+                                <View style={{ alignItems: 'center' }}>
+                                  <Text style={{ fontSize: 20, fontWeight: '800' }}>ข้าวหน้าไก่เทอริยากิ</Text>
+                                  <Image style={{ marginTop : 20,height: 300, width: 300 , borderRadius : 15}} source={require('../imgfood/lunch/3.jpg')} />
+                                </View>
+                                <View style={{ alignItems: 'center' }}>
+                                  <Text style={{ fontSize: 20, fontWeight: '800' }}>ข้าวกะเพราไก่</Text>
+                                  <Image style={{ marginTop : 20,height: 300, width: 300 , borderRadius : 15}} source={require('../imgfood/lunch/4.png')} />
+                                </View>
+                              </Swiper>
+                              : null}
+                          </View>
+                        }
+                      />
+                    </View>
+                  </View>
+                </View>
+              </View>
+
+              <View style={{ alignItems: 'center', marginRight: 25 }}>
+                <View style={styles.card1}>
+                  <Text style={{ marginTop: 20, marginLeft : 20, fontSize: 30, fontWeight: '800' }}>
+                    Dinner
+                </Text>
+                <View style={{ alignItems: 'center' }}>
+                    <View style={styles.cardin}>
+                      <FlatList
+                        data={this.state.data}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item }) =>
+                          <View style={{ marginTop: 10, alignItems: 'center' }}>
+                            {item.status = "Under Weight" ?
+                              <Swiper
+                                style={styles.wrapper}
+                                loop={true}
+                                autoplay={true}
+                                style={{ borderRadius: 15 }} >
+                                <View style={{ alignItems: 'center' }}>
+                                  <Text style={{ fontSize: 20, fontWeight: '800' }}>ข้าวกล้อง 2 ทัพพี + แกงส้มผักรวม</Text>
+                                  <Image style={{ marginTop : 20,height: 300, width: 300 , borderRadius : 15}} source={require('../imgfood/breakfast/4.jpg')} />
+                                </View>
+                                <View style={{ alignItems: 'center' }}>
+                                  <Text style={{ fontSize: 20, fontWeight: '800' }}>ข้าวสวย 2 ทัพพี + ต้มจับฉ่าย</Text>
+                                  <Image style={{ marginTop : 20,height: 300, width: 300 , borderRadius : 15}} source={require('../imgfood/breakfast/5.jpeg')} />
+                                </View>
+                                <View style={{ alignItems: 'center' }}>
+                                  <Text style={{ fontSize: 20, fontWeight: '800' }}>บะหมี่ต้มยำ 1 ชาม</Text>
+                                  <Image style={{ marginTop : 20,height: 300, width: 300 , borderRadius : 15}} source={require('../imgfood/breakfast/6.jpg')} />
+                                </View>
+                                <View style={{ alignItems: 'center' }}>
+                                  <Text style={{ fontSize: 20, fontWeight: '800' }}>ข้าวกล้อง 2 ทัพพี - ผัดเปรี้ยวหวานไก่</Text>
+                                  <Image style={{ marginTop : 20,height: 300, width: 300 , borderRadius : 15}} source={require('../imgfood/breakfast/7.jpg')} />
+                                </View>
+                              </Swiper>
+                              : null}
+                          </View>
+                        }
+                      />
+                    </View>
+                  </View>
+                </View>
+              </View>
+
             </ScrollView>
+
           </View>
 
         </View>
@@ -105,5 +208,37 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+  },
+  card1: {
+    width: 360,
+    height: 500,
+    marginTop : 20,
+    backgroundColor: "#fff",
+    borderRadius: 15,
+    elevation: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    elevation: 3,
+  },
+  cardin: {
+    width: 340,
+    height: 410,
+    marginTop: 20,
+    backgroundColor: "#fff",
+    borderRadius: 15,
+    elevation: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    elevation: 3,
   },
 });

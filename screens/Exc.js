@@ -36,7 +36,7 @@ export default class Food extends React.Component {
   }
 
   insertExercise = () => {
-    fetch('http://172.18.132.101/NSC/Insert_exercise.php', {
+    fetch('http://192.168.43.193/NSC/Insert_exercise.php', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -46,6 +46,24 @@ export default class Food extends React.Component {
         excs: this.state.exc[0],
         times: this.state.time[0]
       }),
+    })
+      .then((response) => response.text())
+      .then((responseJson) => {
+        Alert.alert(responseJson);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  sum = () => {
+    fetch('http://192.168.43.193/NSC/sum.php', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+
     })
       .then((response) => response.text())
       .then((responseJson) => {
@@ -123,12 +141,12 @@ export default class Food extends React.Component {
                 { label: '8 min', value: 8, icon: () => <Icon name="flag" size={18} color="#900" /> },
                 { label: '9 min', value: 9, icon: () => <Icon name="flag" size={18} color="#900" /> },
                 { label: '10 min', value: 10, icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: '11 min', value: 11, icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: '12 min', value: 12, icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: '13 min', value: 13, icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: '14 min', value: 14, icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: '15 min', value: 15, icon: () => <Icon name="flag" size={18} color="#900" /> },
-                { label: '16 min', value: 16, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: '15 min', value: 11, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: '20 min', value: 12, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: '25 min', value: 13, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: '30 min', value: 14, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: '35 min', value: 15, icon: () => <Icon name="flag" size={18} color="#900" /> },
+                { label: '40 min', value: 16, icon: () => <Icon name="flag" size={18} color="#900" /> },
               ]}
 
               multiple={true}

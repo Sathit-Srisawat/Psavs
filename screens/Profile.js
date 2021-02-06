@@ -51,6 +51,23 @@ export default class Profile extends React.Component {
     this.fetchData();
   }
 
+  clear = () => {
+    fetch('http://192.168.43.193/NSC/clear.php', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.text())
+      .then((responseJson) => {
+        Alert.alert(responseJson);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
 
   render() {
     return (
@@ -232,6 +249,15 @@ export default class Profile extends React.Component {
               </View>
             </View>
 
+            <View style = {styles.cardse}>
+                <Button 
+                  title = "Clear"
+                  color="#841584"
+                  onPress={() => Alert.alert('Complete')}
+                  onPress={this.clear}
+                />
+            </View>
+
           </View>
         </View>
       </View >
@@ -280,6 +306,15 @@ const styles = StyleSheet.create({
     width: 300,
     height: 60,
     marginTop: 80,
+    backgroundColor: '#FFF',
+    borderRadius: 15,
+    elevation: 10,
+  },
+  cardse: {
+    alignSelf: "center",
+    width: 250,
+    height: 60,
+    marginTop: 40,
     backgroundColor: '#FFF',
     borderRadius: 15,
     elevation: 10,

@@ -16,12 +16,19 @@ export default class Profile extends React.Component {
 
   state = {
     data: [],
+    data1: [],
   }
 
   fetchData = async () => {
     const response = await fetch('http://localhost:3006/Goal'); //http://localhost:1348/testTabl //http://172.16.186.173:1348/testTabl
     const testTable = await response.json();
     this.setState({ data: testTable });
+
+    const responses = await fetch('http://localhost:3010/sum'); //http://localhost:1348/testTabl //http://172.16.186.173:1348/testTabl
+    const testTables = await responses.json();
+    this.setState({ data1: testTables });
+
+
 
   }
   componentDidMount = () => {
@@ -31,7 +38,7 @@ export default class Profile extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1 ,backgroundColor : '#fff'}}>
+      <View style={{ flex: 1, backgroundColor: '#fff' }}>
         <Image style={{ height: 270, width: Dimensions.get('window').width, borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }} source={require('../img/7.jpg')} />
         <View style={{ flex: 0.25, position: 'absolute', marginLeft: 30 }}>
           <View style={{ marginTop: 50, marginLeft: 30 }}>
@@ -56,11 +63,21 @@ export default class Profile extends React.Component {
             </View>
 
             <View style={{ marginLeft: 50, alignItems: 'center' }}>
-              <View>
-                <Text style={{ color: '#FFF', fontSize: 15 }}>
-                  4125
-                </Text>
-              </View>
+              <Text style={{ color: '#FFF', fontSize: 15 }}>
+                1658
+              </Text>
+              <FlatList
+                data={this.state.data}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={({ item }) =>
+                  <View>
+                    <Text style={{ color: '#FFF', fontSize: 15 }}>
+                      {item.kcal}
+                    </Text>
+                  </View>
+                }
+              />
+
               <View style={{ marginTop: 10 }}>
                 <Text style={{ color: '#FFF', fontSize: 15 }}>
                   KCAL
@@ -69,11 +86,23 @@ export default class Profile extends React.Component {
             </View>
 
             <View style={{ marginLeft: 50, alignItems: 'center' }} >
-              <View>
-                <Text style={{ color: '#FFF', fontSize: 15 }} >
-                  134
-                </Text>
-              </View>
+
+              <FlatList
+                data={this.state.data}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={({ item }) =>
+                  <View>
+                    <Text style={{ color: '#FFF', fontSize: 15 }}>
+                      {item.kcal}
+                    </Text>
+                  </View>
+                }
+              />
+
+              <Text style={{ color: '#FFF', fontSize: 15 }}>
+                128
+              </Text>
+
               <View style={{ marginTop: 10 }}>
                 <Text style={{ color: '#FFF', fontSize: 15 }}>
                   MINUTE
@@ -89,19 +118,13 @@ export default class Profile extends React.Component {
                 GOAL
               </Text>
 
-
-              <Text style={{ alignSelf: 'center', color: '#000', fontSize: 15, margin: 10 }}>
-                Gain weight 30 kg in 1 mount
-              </Text>
-
-
               <FlatList
                 data={this.state.data}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) =>
                   <View style={{ marginTop: 10 }}>
-                    <Text style={{ color: "#000" }}>
-                      {item.Goal}
+                    <Text style={{ alignSelf: 'center', color: '#000', fontSize: 15, margin: 10 }}>
+                      Gain weight {item.Goal} kg in 1 mount
                     </Text>
                   </View>
                 }
@@ -112,12 +135,12 @@ export default class Profile extends React.Component {
 
           <View style={{ alignItems: 'center' }}>
             <View style={styles.card1}>
-              <Text style={{ marginTop: 20,marginLeft :20 }}>
+              <Text style={{ marginTop: 20, marginLeft: 20 }}>
                 Progress
               </Text>
 
               <ProgressChart
-                style = {{borderRadius : 15 }}
+                style={{ borderRadius: 15 }}
                 data={data}
                 width={325}
                 height={160}
@@ -134,11 +157,11 @@ export default class Profile extends React.Component {
 
             <View style={styles.card2}>
               <View>
-                <Text style={{ margin: 20 ,fontSize : 20 ,fontWeight : '800'}}>
+                <Text style={{ margin: 20, fontSize: 20, fontWeight: '800' }}>
                   Schedule today
                 </Text>
 
-                <Text style = {{textAlign : 'center', marginTop : 10,fontSize : 20 ,fontWeight : '800'}}>
+                <Text style={{ textAlign: 'center', marginTop: 10, fontSize: 20, fontWeight: '800' }}>
                   Exercise
                 </Text>
               </View>
@@ -146,11 +169,11 @@ export default class Profile extends React.Component {
 
             <View style={styles.card2}>
               <View>
-                <Text style={{ margin: 20 ,fontSize : 20 ,fontWeight : '800'}}>
+                <Text style={{ margin: 20, fontSize: 20, fontWeight: '800' }}>
                   Date
                 </Text>
 
-                <Text style={{ margin: 10, marginLeft : 40 ,fontSize : 20 ,fontWeight : '800'}}>
+                <Text style={{ margin: 10, marginLeft: 40, fontSize: 20, fontWeight: '800' }}>
                   26 {'\n'} {'\t'}01 {'\n'}{'\t\t'}64
                 </Text>
               </View>
@@ -178,7 +201,7 @@ const chartConfig = {
   strokeWidth: 2, // optional, default 3
   barPercentage: 0.8,
   useShadowColorFromDataset: false // optional
-  
+
 };
 
 

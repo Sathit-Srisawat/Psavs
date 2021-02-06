@@ -24,6 +24,7 @@ import {
 } from "react-native-chart-kit";
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Swiper from 'react-native-swiper'
 
 Icon.loadFont();
 export default class Exercise extends React.Component {
@@ -33,11 +34,11 @@ export default class Exercise extends React.Component {
   }
 
   fetchData = async () => {
-    const response = await fetch('http://localhost:3005/suggestEx'); //http://localhost:1348/testTabl //http://172.16.186.173:1348/testTabl
+    const response = await fetch('http://localhost:3001/Personal'); //http://localhost:1348/testTabl //http://172.16.186.173:1348/testTabl
     const testTable = await response.json();
     this.setState({ data: testTable });
-
   }
+
   componentDidMount = () => {
     this.fetchData();
   }
@@ -53,34 +54,66 @@ export default class Exercise extends React.Component {
             </Text>
           </View>
           <View style={styles.cards}>
-            <ScrollView>
-              <View style={{ margin: 10 }}>
-                <FlatList
-                  data={this.state.data}
-                  keyExtractor={(item, index) => index.toString()}
-                  renderItem={({ item }) =>
-                    <View style={{ marginTop: 10 , alignItems : 'center'}}>
-                      <Text style={{ color: "#000" }}>
-                        {'\n'}
-                        {item.style}
-                        {'\n'}
-                        {item.style == "Jump up Burpee" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Jump_up_Burpee.jpg')} /> : null}
-                        {item.style == "Lunges" ? <Image style={{ height: 350, width: 350 }} source={require('../img/lunges.jpg')} /> : null}
-                        {item.style == "Mountain Climber" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Mountain_Climber.jpg')} /> : null}
-                        {item.style == "Plank" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Plank.jpg')} /> : null}
-                        {item.style == "Push Ups" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Push_Ups.jpg')} /> : null}
-                        {item.style == "Reverse Crunch" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Reverse_Crunch.png')} /> : null}
-                        {item.style == "Sit Ups" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Sit_Ups.jpg')} /> : null}
-                        {item.style == "Squat" ? <Image style={{ height: 350, width: 350 }} source={require('../img/Squat.jpg')} /> : null}                        
-                      </Text>
-                    </View>
-                  }
-                />
-
+            <View style={{ alignItems: 'center' }}>
+              <View style={styles.card1}>
+                <Text style={{ marginTop: 20, marginLeft: 20, fontSize: 30, fontWeight: '800' }}>
+                  Exercise
+                </Text>
+                <View style={{ alignItems: 'center' }}>
+                  <View style={styles.cardin}>
+                    <FlatList
+                      data={this.state.data}
+                      keyExtractor={(item, index) => index.toString()}
+                      renderItem={({ item }) =>
+                        <View style={{ marginTop: 25, alignItems: 'center' }}>
+                          {item.status = "Under Weight" ?
+                            <Swiper
+                              style={styles.wrapper}
+                              loop={true}
+                              autoplay={true}
+                              style={{ borderRadius: 15 }} >
+                              <View style={{ alignItems: 'center' }}>
+                                <Text style={{ fontSize: 20, fontWeight: '800' }}>Jump up Burpee</Text>
+                                <Image style={{ marginTop: 20, height: 300, width: 300, borderRadius: 15 }} source={require('../imgexercise/under/Jump_up_Burpee.jpeg')} />
+                              </View>
+                              <View style={{ alignItems: 'center' }}>
+                                <Text style={{ fontSize: 20, fontWeight: '800' }}>Lunges</Text>
+                                <Image style={{ marginTop: 20, height: 300, width: 300, borderRadius: 15 }} source={require('../imgexercise/under/Lunges.jpg')} />
+                              </View>
+                              <View style={{ alignItems: 'center' }}>
+                                <Text style={{ fontSize: 20, fontWeight: '800' }}>Mountain Climber</Text>
+                                <Image style={{ marginTop: 20, height: 300, width: 300, borderRadius: 15 }} source={require('../imgexercise/under/Mountain_Climber.png')} />
+                              </View>
+                              <View style={{ alignItems: 'center' }}>
+                                <Text style={{ fontSize: 20, fontWeight: '800' }}>Plank</Text>
+                                <Image style={{ marginTop: 20, height: 300, width: 300, borderRadius: 15 }} source={require('../imgexercise/under/Plank.jpg')} />
+                              </View>
+                              <View style={{ alignItems: 'center' }}>
+                                <Text style={{ fontSize: 20, fontWeight: '800' }}>Push Ups</Text>
+                                <Image style={{ marginTop: 20, height: 300, width: 300, borderRadius: 15 }} source={require('../imgexercise/under/Push_Ups.jpg')} />
+                              </View>
+                              <View style={{ alignItems: 'center' }}>
+                                <Text style={{ fontSize: 20, fontWeight: '800' }}>Reverse Crunch</Text>
+                                <Image style={{ marginTop: 20, height: 300, width: 300, borderRadius: 15 }} source={require('../imgexercise/under/Reverse_Crunch.png')} />
+                              </View>
+                              <View style={{ alignItems: 'center' }}>
+                                <Text style={{ fontSize: 20, fontWeight: '800' }}>Sit Ups</Text>
+                                <Image style={{ marginTop: 20, height: 300, width: 300, borderRadius: 15 }} source={require('../imgexercise/under/Sit_Ups.jpg')} />
+                              </View>
+                              <View style={{ alignItems: 'center' }}>
+                                <Text style={{ fontSize: 20, fontWeight: '800' }}>Aquat</Text>
+                                <Image style={{ marginTop: 20, height: 300, width: 300, borderRadius: 15 }} source={require('../imgexercise/under/Aquat.jpg')} />
+                              </View>
+                            </Swiper>
+                            : null}
+                        </View>
+                      }
+                    />
+                  </View>
+                </View>
               </View>
-            </ScrollView>
+            </View>
           </View>
-
         </View>
       </View>
     );
@@ -105,13 +138,29 @@ const styles = StyleSheet.create({
 
   card: {
     alignSelf: "center",
-    margin : 10,
+    margin: 10,
     width: Dimensions.get('window').width - 10,
     height: Dimensions.get('window').height - 380,
     backgroundColor: '#000',
     borderRadius: 15,
     elevation: 10,
     position: 'absolute',
-    
+  },
+  card1: {
+    alignItems: 'center',
+    width: 360,
+    height: 500,
+    marginTop: 20,
+    backgroundColor: "#fff",
+    borderRadius: 15,
+    elevation: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    elevation: 3,
   },
 });

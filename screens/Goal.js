@@ -31,7 +31,7 @@ Icon.loadFont();
 export default class Food extends React.Component {
 
   insertGoal = () => {
-    fetch('http://172.16.29.76/NSC/Insert_Goal.php', {
+    fetch('http://192.168.43.193/NSC/Insert_Goal.php', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

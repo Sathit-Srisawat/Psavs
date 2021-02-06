@@ -31,7 +31,7 @@ Icon.loadFont();
 export default class Food extends React.Component {
 
   insertPersonal = () => {
-    fetch('http://172.19.173.122/NSC/Insert_information.php', {
+    fetch('http://192.168.43.193/NSC/Insert_information.php', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -42,6 +42,7 @@ export default class Food extends React.Component {
         weight: this.state.Weight,
         Ages: this.state.Age,
         Sexs: this.state.Sex,
+        diseases: this.state.disease,
       }),
     })
       .then((response) => response.text())
@@ -64,9 +65,9 @@ export default class Food extends React.Component {
                 Personal Information
             </Text>
           </View>
-
           <View style={styles.cards}>
-
+          <ScrollView horizontal = {false
+          }>
             <View style = {{margin : 20}}>
               <Text style = {{fontSize : 15 ,fontWeight : '500'}}>
                 Height
@@ -111,6 +112,19 @@ export default class Food extends React.Component {
 
             <View style = {{margin : 20}}>
               <Text style = {{fontSize : 15 ,fontWeight : '500'}}>
+                congenital disease
+              </Text>
+            </View>
+
+            <View style = {{marginTop : 10 ,alignItems: 'center' ,}}>
+              <TextInput
+                style = {{height : 40 ,width : 300}}
+                onChangeText={(disease) => this.setState({disease})}
+              />
+            </View>
+
+            <View style = {{margin : 20}}>
+              <Text style = {{fontSize : 15 ,fontWeight : '500'}}>
                 Sex
               </Text>
             </View>
@@ -129,6 +143,7 @@ export default class Food extends React.Component {
                     onPress={this.insertPersonal}
                 />
             </View>
+            </ScrollView>
         </View>
         </View>
       </View>
