@@ -22,6 +22,32 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 export default class Food extends React.Component {
 
+    update = () => {
+        fetch('http://172.19.173.122/NSCs/update.php', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            Username: this.state.username,
+            Name: this.state.name,
+            Age: this.state.age,
+            Phone: this.state.phone,
+            Email: this.state.email,
+            Hospital: this.state.hospital,
+          }),
+        })
+    
+          .then((response) => response.text())
+          .then((responseJson) => {
+            Alert.alert(responseJson);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+
 
   render() {
     return (
@@ -41,7 +67,7 @@ export default class Food extends React.Component {
             <TextInput
               style={{ height: 40, width: 300 }}
               placeholder='Username'
-              onChangeText={(Height) => this.setState({ Height })}
+              onChangeText={(username) => this.setState({ username })}
             />
           </View>
 
@@ -55,7 +81,7 @@ export default class Food extends React.Component {
             <TextInput
               style={{ height: 40, width: 300 }}
               placeholder='โรงพยาบาล'
-              onChangeText={(Height) => this.setState({ Height })}
+              onChangeText={(hospital) => this.setState({ hospital })}
             />
           </View>
 
@@ -69,7 +95,7 @@ export default class Food extends React.Component {
             <TextInput
               style={{ height: 40, width: 300 }}
               placeholder='ชื่อ - นามสกุล'
-              onChangeText={(Weight) => this.setState({ Weight })}
+              onChangeText={(name) => this.setState({ name })}
             />
           </View>
 
@@ -83,7 +109,7 @@ export default class Food extends React.Component {
             <TextInput
               style={{ height: 40, width: 300 }}
               placeholder='อายุ'
-              onChangeText={(Age) => this.setState({ Age })}
+              onChangeText={(age) => this.setState({ age })}
             />
           </View>
 
@@ -97,7 +123,7 @@ export default class Food extends React.Component {
             <TextInput
               style={{ height: 40, width: 300 }}
               placeholder='เบอร์ติดต่อ'
-              onChangeText={(disease) => this.setState({ disease })}
+              onChangeText={(phone) => this.setState({ phone })}
             />
           </View>
 
@@ -111,14 +137,14 @@ export default class Food extends React.Component {
             <TextInput
               style={{ height: 40, width: 300 }}
               placeholder='E - mail'
-              onChangeText={(disease) => this.setState({ disease })}
+              onChangeText={(email) => this.setState({ email })}
             />
           </View>
           <View style={{ alignItems: 'center' }}>
             <View style={styles.button}>
               <Button
                 title="บันทึก"
-                onPress={this.insertPersonal}
+                onPress={this.update}
               />
             </View>
           </View>

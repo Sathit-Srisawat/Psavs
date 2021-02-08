@@ -14,6 +14,9 @@ import Home from "./screens/Home";
 import Add from "./screens/Add";
 import Setting from "./screens/Setting";
 import EditProfile from "./screens/EditProfile";
+import Profile from "./screens/Profile";
+import AddNote from "./screens/AddNote";
+import Notes from "./screens/Notes";
 
 const Tab = createBottomTabNavigator();
 
@@ -24,109 +27,6 @@ function Blank() {
     <View></View>
   );
 }
-
-
-class Food extends React.Component navigation {
-  render() {
-    return (
-      <View style={styles.cards}>
-      <View style={styles.cardin}>
-        <ScrollView>
-          <View style={styles.buttons}>
-            <TouchableOpacity onPress={() => navigation.navigate('Edit Profile')} style={{ flexDirection: 'row' }}>
-              <Image style={{ height: 80, width: 80 }} source={require('./img/1.png')} />
-              <View>
-                <Text style={{ color: '#fff', marginLeft: 20 ,marginTop : 10}}>นาย สมชาย จงเจริญ</Text>
-                <Text style={{ color: '#fff', marginLeft: 20 ,marginTop : 10 }}>อายุ 29 ปี</Text>
-                <Text style={{ color: '#fff', marginLeft: 20 ,marginTop : 10 }}>อัฟเดท : 09/06/63</Text>
-                </View>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
-        </View>
-        </View>
-    );
-  }
-};
-
-
-function HomeStackScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, backgroundColor: '#75cfb8' }}>
-      <View style={{alignItems: 'center' }}>
-        <TextInput
-          style={{ backgroundColor: '#fff', height: 50, borderColor: 'gray', borderRadius: 15, marginTop: 10, width: 350 }}
-          placeholder='     search'
-          onChangeText={(time) => this.setState({ time })}
-        />
-      </View>
-
-      <View style={styles.cards}>
-        <View style={styles.cardin}>
-          <ScrollView>
-            <View style={styles.buttons}>
-              <TouchableOpacity onPress={() => navigation.navigate('Edit Profile')} style={{ flexDirection: 'row' }}>
-                <Image style={{ height: 80, width: 80 }} source={require('./img/1.png')} />
-                <View>
-                  <Text style={{ color: '#fff', marginLeft: 20 ,marginTop : 10}}>นาย สมชาย จงเจริญ</Text>
-                  <Text style={{ color: '#fff', marginLeft: 20 ,marginTop : 10 }}>อายุ 29 ปี</Text>
-                  <Text style={{ color: '#fff', marginLeft: 20 ,marginTop : 10 }}>อัฟเดท : 09/06/63</Text>
-                  </View>
-              </TouchableOpacity>
-            </View>
-
-            <View style={styles.buttons}>
-              <TouchableOpacity onPress={() => navigation.navigate('Edit Profile')} style={{ flexDirection: 'row' }}>
-                <Image style={{ height: 80, width: 80 }} source={require('./img/1.png')} />
-                <View>
-                  <Text style={{ color: '#fff', marginLeft: 20 ,marginTop : 10}}>นาย สมชาย จงเจริญ</Text>
-                  <Text style={{ color: '#fff', marginLeft: 20 ,marginTop : 10 }}>อายุ 29 ปี</Text>
-                  <Text style={{ color: '#fff', marginLeft: 20 ,marginTop : 10 }}>อัฟเดท : 09/06/63</Text>
-                  </View>
-              </TouchableOpacity>
-            </View>
-
-            <View style={styles.buttons}>
-              <TouchableOpacity onPress={() => navigation.navigate('Edit Profile')} style={{ flexDirection: 'row' }}>
-                <Image style={{ height: 80, width: 80 }} source={require('./img/1.png')} />
-                <View>
-                  <Text style={{ color: '#fff', marginLeft: 20 ,marginTop : 10}}>นาย สมชาย จงเจริญ</Text>
-                  <Text style={{ color: '#fff', marginLeft: 20 ,marginTop : 10 }}>อายุ 29 ปี</Text>
-                  <Text style={{ color: '#fff', marginLeft: 20 ,marginTop : 10 }}>อัฟเดท : 09/06/63</Text>
-                  </View>
-              </TouchableOpacity>
-            </View>
-
-            <View style={styles.buttons}>
-              <TouchableOpacity onPress={() => navigation.navigate('Edit Profile')} style={{ flexDirection: 'row' }}>
-                <Image style={{ height: 80, width: 80 }} source={require('./img/1.png')} />
-                <View>
-                  <Text style={{ color: '#fff', marginLeft: 20 ,marginTop : 10}}>นาย สมชาย จงเจริญ</Text>
-                  <Text style={{ color: '#fff', marginLeft: 20 ,marginTop : 10 }}>อายุ 29 ปี</Text>
-                  <Text style={{ color: '#fff', marginLeft: 20 ,marginTop : 10 }}>อัฟเดท : 09/06/63</Text>
-                  </View>
-              </TouchableOpacity>
-            </View>
-
-            <View style={styles.buttons}>
-              <TouchableOpacity onPress={() => navigation.navigate('Edit Profile')} style={{ flexDirection: 'row' }}>
-                <Image style={{ height: 80, width: 80 }} source={require('./img/1.png')} />
-                <View>
-                  <Text style={{ color: '#fff', marginLeft: 20 ,marginTop : 10}}>นาย สมชาย จงเจริญ</Text>
-                  <Text style={{ color: '#fff', marginLeft: 20 ,marginTop : 10 }}>อายุ 29 ปี</Text>
-                  <Text style={{ color: '#fff', marginLeft: 20 ,marginTop : 10 }}>อัฟเดท : 09/06/63</Text>
-                  </View>
-              </TouchableOpacity>
-            </View>
-
-          </ScrollView>
-        </View>
-
-      </View>
-    </View>
-  );
-}
-
 
 function SettingsScreen({ navigation }) {
   return (
@@ -180,10 +80,34 @@ function SettingsScreen({ navigation }) {
         </View>
       </View>
     </View>
-
-
   );
 }
+
+function note({ navigation }) {
+  return (
+    <View style={{ flex: 1, backgroundColor: '#fff' }}>
+      <View style={styles.buttonNote}>
+        <TouchableOpacity onPress={() => navigation.navigate('Add Note')} >
+          <Text style={{ alignSelf: 'center', marginTop: 40 , color : '#fff'}}>Add Note</Text>
+          <View style = {{alignItems : 'center', marginTop : 20}}>
+            <Icon name="plus" size={30} color="#fff" />
+          </View>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.buttonNote}>
+        <TouchableOpacity onPress={() => navigation.navigate('Notes')}>
+          <Text style={{ alignSelf: 'center', marginTop: 40 ,color : '#fff'}}>Notes</Text>
+          <View style = {{alignItems : 'center', marginTop : 20}}>
+            <Icon name="book" size={30} color="#fff" />
+          </View>
+        </TouchableOpacity>
+      </View>
+
+    </View>
+  );
+}
+
 
 const SettingsStack = createStackNavigator();
 function SettingsStackScreen() {
@@ -195,13 +119,14 @@ function SettingsStackScreen() {
   );
 }
 
-const HomesStack = createStackNavigator();
-function HomesStackScreen() {
+const NotesStack = createStackNavigator();
+function NotesStackScreen() {
   return (
-    <HomesStack.Navigator>
-      <HomesStack.Screen name="Home" component={Food} />
-      <SettingsStack.Screen name="Edit Profile" component={EditProfile} />
-    </HomesStack.Navigator>
+    <NotesStack.Navigator>
+      <NotesStack.Screen name="Note" component={note} />
+      <NotesStack.Screen name="Add Note" component={AddNote} />
+      <NotesStack.Screen name="Notes" component={Notes} />
+    </NotesStack.Navigator>
   );
 }
 
@@ -216,6 +141,8 @@ const screenOptions = ({ route }) => ({
       iconName = 'users';
     } else if (route.name == 'ตั้งค่า') {
       iconName = 'cog';
+    } else if (route.name == 'Profile') {
+      iconName = 'user';
     }
     return <Entypo name={iconName} size={size} color={color} />;
   },
@@ -231,9 +158,10 @@ function HomeScreen() {
         inactiveTintColor: '#464962',
       }}
     >
-      <Tab.Screen name="Home" component={HomesStackScreen} />
+      <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="เพิ่มรายชื่อ" component={Add} />
       <Tab.Screen name="ตั้งค่า" component={SettingsStackScreen} />
+      <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
 }
@@ -245,6 +173,7 @@ export default function App() {
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Note" component={NotesStackScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
@@ -327,6 +256,15 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: 350,
     height: 100,
+    marginTop: 30,
+    backgroundColor: "#1687a7",
+    borderRadius: 15,
+    elevation: 10,
+  },
+  buttonNote: {
+    alignSelf: 'center',
+    width: 350,
+    height: 200,
     marginTop: 30,
     backgroundColor: "#1687a7",
     borderRadius: 15,

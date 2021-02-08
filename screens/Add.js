@@ -20,8 +20,35 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 Icon.loadFont();
+
 export default class Food extends React.Component {
 
+  patient = () => {
+    fetch('http://172.19.173.122/NSCs/patient.php', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        Username: this.state.username,
+        Name: this.state.name,
+        Age: this.state.age,
+        Phone: this.state.phone,
+        Email: this.state.email,
+        Address: this.state.address,
+        Disease: this.state.disease,
+      }),
+    })
+
+      .then((response) => response.text())
+      .then((responseJson) => {
+        Alert.alert(responseJson);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   render() {
     return (
@@ -35,84 +62,120 @@ export default class Food extends React.Component {
           <Image style={{ height: 150, width: 150 }} source={require('../img/Add.png')} />
         </View>
         <View style={styles.cards}>
-          <View style={{ margin: 20 }}>
-            <Text style={{ fontSize: 15, fontWeight: '500' }}>
-              Username
+          <ScrollView style={{ marginBottom: 40 }}>
+            <View style={{ margin: 20 }}>
+              <Text style={{ fontSize: 15, fontWeight: '500' }}>
+                Username
               </Text>
-          </View>
+            </View>
 
-          <View style={{ alignItems: 'center', }}>
-            <TextInput
-              style={{ height: 40, width: 300 }}
-              placeholder='Username'
-              onChangeText={(Height) => this.setState({ Height })}
-            />
-          </View>
-
-          <View style={{ margin: 20 }}>
-            <Text style={{ fontSize: 15, fontWeight: '500' }}>
-              ชื่อ - นามสกุล
-              </Text>
-          </View>
-
-          <View style={{ alignItems: 'center', }}>
-            <TextInput
-              style={{ height: 40, width: 300 }}
-              placeholder='ชื่อ - นามสกุล'
-              onChangeText={(Weight) => this.setState({ Weight })}
-            />
-          </View>
-
-          <View style={{ margin: 20 }}>
-            <Text style={{ fontSize: 15, fontWeight: '500' }}>
-              อายุ
-              </Text>
-          </View>
-
-          <View style={{ alignItems: 'center', }}>
-            <TextInput
-              style={{ height: 40, width: 300 }}
-              placeholder='อายุ'
-              onChangeText={(Age) => this.setState({ Age })}
-            />
-          </View>
-
-          <View style={{ margin: 20 }}>
-            <Text style={{ fontSize: 15, fontWeight: '500' }}>
-              เบอร์ติดต่อ
-              </Text>
-          </View>
-
-          <View style={{ alignItems: 'center', }}>
-            <TextInput
-              style={{ height: 40, width: 300 }}
-              placeholder='เบอร์ติดต่อ'
-              onChangeText={(disease) => this.setState({ disease })}
-            />
-          </View>
-
-          <View style={{ margin: 20 }}>
-            <Text style={{ fontSize: 15, fontWeight: '500' }}>
-              E - mail
-              </Text>
-          </View>
-
-          <View style={{ alignItems: 'center', }}>
-            <TextInput
-              style={{ height: 40, width: 300 }}
-              placeholder='E - mail'
-              onChangeText={(disease) => this.setState({ disease })}
-            />
-          </View>
-          <View style={{ alignItems: 'center' }}>
-            <View style={styles.button}>
-              <Button
-                title="เพิ่ม"
-                onPress={this.insertPersonal}
+            <View style={{ alignItems: 'center', }}>
+              <TextInput
+                style={{ height: 40, width: 300 }}
+                placeholder='Username'
+                onChangeText={(username) => this.setState({ username })}
               />
             </View>
-          </View>
+
+            <View style={{ margin: 20 }}>
+              <Text style={{ fontSize: 15, fontWeight: '500' }}>
+                ชื่อ - นามสกุล
+              </Text>
+            </View>
+
+            <View style={{ alignItems: 'center', }}>
+              <TextInput
+                style={{ height: 40, width: 300 }}
+                placeholder='ชื่อ - นามสกุล'
+                onChangeText={(name) => this.setState({ name })}
+              />
+            </View>
+
+            <View style={{ margin: 20 }}>
+              <Text style={{ fontSize: 15, fontWeight: '500' }}>
+                อายุ
+              </Text>
+            </View>
+
+            <View style={{ alignItems: 'center', }}>
+              <TextInput
+                style={{ height: 40, width: 300 }}
+                placeholder='อายุ'
+                onChangeText={(age) => this.setState({ age })}
+              />
+            </View>
+
+            <View style={{ margin: 20 }}>
+              <Text style={{ fontSize: 15, fontWeight: '500' }}>
+                เบอร์ติดต่อ
+              </Text>
+            </View>
+
+            <View style={{ alignItems: 'center', }}>
+              <TextInput
+                style={{ height: 40, width: 300 }}
+                placeholder='เบอร์ติดต่อ'
+                onChangeText={(phone) => this.setState({ phone })}
+              />
+            </View>
+
+            <View style={{ margin: 20 }}>
+              <Text style={{ fontSize: 15, fontWeight: '500' }}>
+                E - mail
+              </Text>
+            </View>
+
+            <View style={{ alignItems: 'center', }}>
+              <TextInput
+                style={{ height: 40, width: 300 }}
+                placeholder='E - mail'
+                onChangeText={(email) => this.setState({ email })}
+              />
+            </View>
+
+            <View style={{ margin: 20 }}>
+              <Text style={{ fontSize: 15, fontWeight: '500' }}>
+                Address
+              </Text>
+            </View>
+
+            <View style={{ alignItems: 'center', }}>
+              <TextInput
+                style={{ height: 40, width: 300 }}
+                placeholder='Address'
+                onChangeText={(address) => this.setState({ address })}
+              />
+            </View>
+
+            <View style={{ margin: 20 }}>
+              <Text style={{ fontSize: 15, fontWeight: '500' }}>
+                Disease
+              </Text>
+            </View>
+
+            <View style={{ alignItems: 'center', }}>
+              <TextInput
+                style={{ height: 40, width: 300 }}
+                placeholder='Disease'
+                onChangeText={(disease) => this.setState({ disease })}
+              />
+            </View>
+
+            <View style={{ alignItems: 'center' }}>
+              <View style={styles.button}>
+                <Button
+                  title="เพิ่ม"
+                  onPress={this.patient}
+                />
+              </View>
+
+              <View style={{ marginBottom: 200 }}>
+                <Text>{'\n\n\n\n\n\n\n\n\n'}</Text>
+              </View>
+            </View>
+          </ScrollView>
         </View>
+
       </View>
     );
   }
